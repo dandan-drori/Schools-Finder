@@ -1,4 +1,4 @@
-import enrichService from './enrich.service.js'
+const enrichService = require('./enrich.service.js')
 
 async function enrich(req, res) {
 	try {
@@ -11,6 +11,6 @@ async function enrich(req, res) {
 	}
 }
 
-export default {
+module.exports = {
 	enrich,
 }

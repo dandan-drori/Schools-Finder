@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 // const BASE_URL = 'http://www.overpass-api.de/api/xapi'
 const BASE_URL = 'https://overpass-api.de/api/interpreter'
 const TRAIL_URL = ';out;'
@@ -45,6 +45,6 @@ const _locationsToBoundingBox = (latitude, longitude, padding = 0.01) => {
 	return bounding_box
 }
 
-export default {
+module.exports = {
 	enrich,
 }

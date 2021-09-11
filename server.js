@@ -1,15 +1,14 @@
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
-import { fileURLToPath } from 'url'
+import { URL } from 'url'
 const app = express()
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 app.use(express.json())
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '../client/build')))
+	const pathToBuild = new URL('../client/build', import.mera.url).pathname;
+	app.use(express.static(pathToBuild))
 } else {
 	const corsOptions = {
 		origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
@@ -18,8 +17,10 @@ if (process.env.NODE_ENV === 'production') {
 	app.use(cors(corsOptions))
 }
 
+const pathToHtml = new URL('../client/build/index.html', import.mera.url).pathname;
+
 app.get('/**', (req, res) => {
-	res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+	res.sendFile(pathToHtml)
 })
 
 import enrichRoutes from './api/enrich/enrich.routes.js'
